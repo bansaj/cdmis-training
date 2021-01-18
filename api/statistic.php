@@ -25,7 +25,18 @@
         // GET ALL
         public function getStatistics()
         {
-            $sqlQuery = "SELECT * FROM " . $this->db_table . "";
+            $sqlQuery = "SELECT 
+                        statistics.id AS id,
+                        statistics.population AS population,
+                        statistics.male_population AS male_population,
+                        statistics.female_population AS female_population,
+                        statistics.household AS household,
+                        statistics.ward_id AS ward_id,
+                        ward.title AS ward_title,
+                        ward.municipality_id AS municipality_id
+                        FROM
+                        statistics
+                        INNER JOIN ward ON ward.id = statistics.ward_id";
             $stmt = $this->conx->prepare($sqlQuery);
             $stmt->execute();
             return $stmt;

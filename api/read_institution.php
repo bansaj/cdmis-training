@@ -28,7 +28,9 @@
                 "type" => $type,
                 "lat" => $lat,
                 "long" => $long,
-                "ward_id" => $ward_id
+                "ward_id" => $ward_id,
+                "ward_title" => $ward_title,
+                "municipality_id" => $municipality_id,
             );
 
             array_push($institutionArr["results"], $e);

@@ -15,6 +15,8 @@
         public $long;
         public $type;
         public $ward_id;
+        public $ward_title;
+        public $municipality_id;
 
         // Db connection
         public function __construct($db)
@@ -25,7 +27,18 @@
         // GET ALL
         public function getInstitutions()
         {
-            $sqlQuery = "SELECT * FROM " . $this->db_table . "";
+            $sqlQuery = "SELECT
+                        institution.id AS id,
+                        institution.title AS title,
+                        institution.lat AS lat,
+                        institution.`long` AS `long`,
+                        institution.type AS type,
+                        institution.ward_id AS ward_id,
+                        ward.title AS ward_title,
+                        ward.municipality_id AS municipality_id
+                        FROM
+                        institution
+                        INNER JOIN ward ON ward.id = institution.ward_id";
             $stmt = $this->conx->prepare($sqlQuery);
             $stmt->execute();
             return $stmt;

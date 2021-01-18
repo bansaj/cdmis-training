@@ -28,9 +28,10 @@
                 "male_population" => $male_population,
                 "female_population" => $female_population,
                 "household" => $household,
-                "ward_id" => $ward_id
+                "ward_id" => $ward_id,
+                "ward_title" => $ward_title,
+                "municipality_id" => $municipality_id,
             );
-
             array_push($statisticArr["results"], $e);
         }
         echo json_encode($statisticArr);
