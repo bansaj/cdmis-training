@@ -2,10 +2,10 @@
 class Database
 {
     // database credentials
-    private $host = "127.0.0.1"; //localhost
+    private $host = "localhost";
     private $db_name = "cwone";
     private $username = "root";
-    private $password = "root";
+    private $password = "";
     public $conx;
   
     // get the database connection

@@ -38,8 +38,10 @@
                         ward.municipality_id AS municipality_id
                         FROM
                         " . $this->db_table . "
-                        INNER JOIN ward ON ward.id = institution.ward_id";
+                        INNER JOIN ward ON ward.id = institution.ward_id
+                        and ward.municipality_id = :municiaplity_id";
             $stmt = $this->conx->prepare($sqlQuery);
+            $stmt->bindParam(':municiaplity_id', $this->municipality, PDO::PARAM_STR);
             $stmt->execute();
             return $stmt;
         }

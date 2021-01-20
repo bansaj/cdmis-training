@@ -10,6 +10,7 @@
     header("Content-Type: application/json; charset=UTF-8");
 
     $items = new Institution($conx);
+    $items->municipality = isset($_GET['municipality']) ? $_GET['municipality'] : die();
 
 
     $institution_data = $items->getInstitutions();

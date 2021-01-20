@@ -10,6 +10,7 @@
     header("Content-Type: application/json; charset=UTF-8");
 
     $items = new Statistic($conx);
+    $items->municipality = isset($_GET['municipality']) ? $_GET['municipality'] : die();
 
 
     $statistic_data = $items->getStatistics();

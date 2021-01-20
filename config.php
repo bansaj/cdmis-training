@@ -1,8 +1,8 @@
 <?php
-$host = "127.0.0.1";
+$host = "localhost";
 $database = "cwone";
 $username = "root";
-$password = "root";
+$password = "";
 
 $conx = mysqli_connect($host, $username, $password, $database);
 
