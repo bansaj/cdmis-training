@@ -18,7 +18,8 @@ $conx = $database->getConnection();
 $statistic = new Statistic($conx);
   
 // set ID property of record to read
-$statistic->id = isset($_GET['id']) ? $_GET['id'] : die();
+$statistic->ward = isset($_GET['ward']) ? $_GET['ward'] : die();
+$statistic->municipality = isset($_GET['municipality']) ? $_GET['municipality'] : die();
   
 // read the details of statistic to be edited
 $statistic->getStatistic();
@@ -31,8 +32,9 @@ if ($statistic->population!=null) {
         "male_population" => $statistic->male_population,
         "female_population" => $statistic->female_population,
         "household" => $statistic->household,
-        "ward_id" => $statistic->ward_id
-  
+        "ward_id" => $statistic->ward_id,
+        "ward_title" => $statistic->ward_title,
+        "municipality_id" => $statistic->municipality_id,
     );
   
     // set response code - 200 OK

@@ -37,7 +37,7 @@
                         ward.title AS ward_title,
                         ward.municipality_id AS municipality_id
                         FROM
-                        institution
+                        " . $this->db_table . "
                         INNER JOIN ward ON ward.id = institution.ward_id";
             $stmt = $this->conx->prepare($sqlQuery);
             $stmt->execute();
@@ -47,17 +47,27 @@
         // READ single
         public function getInstitution()
         {
-            $sqlQuery = "SELECT
-                      *
-                      FROM
-                        ". $this->db_table ."
-                    WHERE 
-                       id = ?
+            $sqlQuery ="SELECT
+                        institution.id AS id,
+                        institution.title AS title,
+                        institution.lat AS lat,
+                        institution.`long` AS `long`,
+                        institution.type AS type,
+                        institution.ward_id AS ward_id,
+                        ward.title AS ward_title,
+                        ward.municipality_id AS municipality_id
+                        FROM
+                        institution
+                        INNER JOIN ward ON ward.id = institution.ward_id
+                        WHERE 
+                        ward.title = :ward_id
+                        and ward.municipality_id = :municiaplity_id
                     LIMIT 0,1";
 
             $stmt = $this->conx->prepare($sqlQuery);
 
-            $stmt->bindParam(1, $this->id);
+            $stmt->bindParam(':ward_id', $this->ward, PDO::PARAM_STR);
+            $stmt->bindParam(':municiaplity_id', $this->municipality, PDO::PARAM_STR);
 
             $stmt->execute();
 
@@ -69,5 +79,7 @@
             $this->long = $dataRow['long'];
             $this->type = $dataRow['type'];
             $this->ward_id = $dataRow['ward_id'];
+            $this->ward_title = $dataRow['ward_title'];
+            $this->municiaplity_id = $dataRow['municipality_id'];
         }
     }

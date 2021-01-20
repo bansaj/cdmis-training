@@ -18,7 +18,9 @@ $conx = $database->getConnection();
 $institution = new Institution($conx);
   
 // set ID property of record to read
-$institution->id = isset($_GET['id']) ? $_GET['id'] : die();
+$institution->ward = isset($_GET['ward']) ? $_GET['ward'] : die();
+$institution->municipality = isset($_GET['municipality']) ? $_GET['municipality'] : die();
+
   
 // read the details of instituion to be edited
 $institution->getInstitution();
@@ -32,7 +34,6 @@ if ($institution->title!=null) {
         "lat" => $institution->lat,
         "long" => $institution->long,
         "ward_id" => $institution->ward_id
-  
     );
   
     // set response code - 200 OK
